@@ -1,0 +1,6 @@
+numpy
+streamlit
+trame
+trame-iframe
+trame-vuetify
+trame-vtk
