@@ -1,1 +1,5 @@
-venv/
+example/.venv/
+*.egg-info
+.mypy_cache
+.venv
+dist/
