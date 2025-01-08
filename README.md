@@ -1,50 +1,32 @@
-# Streamlit/trame application 
+# trame-streamlit - bridge from streamlit to trame
 
-Requires a paraview 5.10+
+## Build
+Built wheels will be available in the dist folder.
 
-## Virtual environment
-
-```sh
-virtualenv .venv
+```bash
+python -m venv .venv
 source .venv/bin/activate
+pip install build
+python -m build .
+```
+
+## Example
+The example is made of one trame application + one streamlit app.  
+Both applications needs to know the URL to each other.
+```sh
+cd example
+python -m venv .venv
+source .venv/bin/activate
+
+# you need to install some trame related depencies + streamlit
 pip install -r requirements.txt
+
+# you need to install trame-streamlit
+pip install ..
+
+# run trame app
+python ./trame-app/app.py --port 8081 --server --streamlit-origin http://localhost:8080
+
+# open another terminal, make sure to activate the venv, then run streamlist
+streamlit run streamlit-app.py --server.port 8080 -- --trame-app-url http://localhost:8081
 ```
-
-## trame application
-
-### Run trame-app
-```sh
-cd trame-app
-path/to/pvpython ./app.py --port 8080 --server --venv absolute/path/to/.venv
-```
-
-## Streamlit Application
-
-### Setup
-
-In case the trame application is not running on http://localhost:8080, then modify the iframe source URL in ./streamlit/app.py file when instanciating trame_app_component() by changing the trame_app_url value.
-
-In an other terminal:
-
-```sh
-source ./venv
-streamlit run ./streamlit/app.py --server.port 8081
-```
-
-### Apps communication
-Before launching the streamlit app, please modify
-.venv/lib/python3.9/site-packages/trame_iframe/module/serve/trame-iframe.umd.js file:
-
-Change in "Communicator" section:
-
-```sh
-window.postMessage(e,"*");
-```
-
-by
-
-```sh
-window.parent.postMessage(e,"*");
-```
-
-Open localhost:8081 on your web browser

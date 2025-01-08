@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling", "hatch-build-scripts"]
+build-backend = "hatchling.build"
+
+[project]
+name = "trame-streamlit"
+version = "2024.0.0"
+description = "Integrate a trame application in streamlit through an iframe"
+readme = "README.md"
+dependencies = [
+  "streamlit >= 0.63",
+]
+requires-python = ">= 3.10"
+authors = [
+  {name = "Lucie Macron", email = "lucie.macron@kitware.com"},
+  {name = "Jules Bourdais", email = "jules.bourdais@kitware.com"},
+]
+maintainers = [
+  {name = "Jules Bourdais", email = "jules.bourdais@kitware.com"}
+]
+license = {file = "LICENSE"}
+keywords = ["trame", "streamlit"]
+classifiers = [
+  "Programming Language :: Python",
+  "License :: OSI Approved :: Apache Software License"
+]
+
+[project.urls]
+Repository = "https://github.com/kitware/trame-streamlit.git"
+
+[tool.hatch.build.targets.wheel]
+exclude = ["trame_streamlit/**/frontend/**"]
+artifacts = [
+  "trame_streamlit/**/frontend/build/",
+]
+
+packages = ["trame_streamlit/"]
+
+[[tool.hatch.build.hooks.build-scripts.scripts]]
+work_dir = "trame_streamlit/trame_app_iframe_wrapper/frontend"
+commands = [
+  "npm install && npm run build",
+]
+artifacts = [
+  "trame_streamlit/trame_app_iframe_wrapper/frontend/build",
+]
