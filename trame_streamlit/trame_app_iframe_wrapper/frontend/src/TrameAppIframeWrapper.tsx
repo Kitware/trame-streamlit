@@ -42,7 +42,7 @@ const TrameAppIframeWrapper: React.FC<TrameAppIframeWrapperProps> = ({ args }) =
       comm.state.watch(syncStateKeys, (...stateValues) => {
         const componentValue = {};
         // @ts-ignore 
-        stateValues.entries().forEach(([idx, stateVal]) => {
+        Array.from(stateValues.entries()).forEach(([idx, stateVal]) => {
           console.log(`${syncStateKeys[idx]} changed - new val: `, stateVal);
           componentValue[syncStateKeys[idx]] = stateVal;
         });
