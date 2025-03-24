@@ -106,6 +106,7 @@ with SinglePageLayout(server) as layout:
 
     with layout.toolbar:
         vuetify.VSpacer()
+        vuetify.VCheckbox(v_model="interaction_mode", label="Select", true_value="select", false_value="interact")
         vuetify.VSlider(
             v_model=("resolution", DEFAULT_RESOLUTION),
             min=3,

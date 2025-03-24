@@ -11,8 +11,11 @@ python -m build .
 ```
 
 ## Example
-The example is made of one trame application + one streamlit app.  
-Both applications needs to know the URL to each other.
+The example is made of one trame application + three streamlit app.  
+- `streamlit_to_trame.py` => streamlit app control the trame state
+- `trame_to_streamlit.py` => trame state controls the streamlit app
+- `bidirection.py` => mix of both world
+Both the streamlit and trame applications needs to know the URL to each other.
 ```sh
 cd example
 python -m venv .venv
@@ -28,5 +31,5 @@ pip install ..
 python ./trame-app/app.py --port 8081 --server --streamlit-origin http://localhost:8080
 
 # open another terminal, make sure to activate the venv, then run streamlist
-streamlit run streamlit-app.py --server.port 8080 -- --trame-app-url http://localhost:8081
+streamlit run streamlit_to_trame.py.py --server.port 8080 -- --trame-app-url http://localhost:8081
 ```
