@@ -31,16 +31,17 @@ Repository = "https://github.com/kitware/trame-streamlit.git"
 [tool.hatch.build.targets.wheel]
 exclude = ["trame_streamlit/**/frontend/**"]
 artifacts = [
-  "trame_streamlit/**/frontend/build/",
+  "trame_streamlit/**/frontend/dist/",
 ]
 
 packages = ["trame_streamlit/"]
 
 [[tool.hatch.build.hooks.build-scripts.scripts]]
-work_dir = "trame_streamlit/trame_app_iframe_wrapper/frontend"
+work_dir = "./trame_streamlit/trame_app_iframe_wrapper/frontend"
 commands = [
-  "npm install && npm run build",
+  "npm ci",
+  "npm run build",
 ]
 artifacts = [
-  "trame_streamlit/trame_app_iframe_wrapper/frontend/build",
+  "dist",
 ]
