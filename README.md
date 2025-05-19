@@ -31,5 +31,5 @@ pip install ..
 python ./trame-app/app.py --port 8081 --server --streamlit-origin http://localhost:8080
 
 # open another terminal, make sure to activate the venv, then run streamlist
-streamlit run streamlit_to_trame.py.py --server.port 8080 -- --trame-app-url http://localhost:8081
+streamlit run streamlit_to_trame.py --server.port 8080 -- --trame-app-url http://localhost:8081
 ```
